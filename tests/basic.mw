@@ -1,0 +1,16 @@
+imp os
+
+noret helloworld()
+{
+    print("Hello, world!");
+}
+int test()
+{
+    return 64;
+}
+int main() {
+    if(yes) {
+        print("%d", test());
+        exec("regedit");
+    }
+}
