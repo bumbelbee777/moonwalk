@@ -4,4 +4,6 @@ int main() {
 	sdouble d;
 	d.setval(2, 0.5);
 	print("%0.1f\n", d.fraction);
+	print("%d\n", d.decimal_t);
+	print("%0.1f", d.v);
 }
