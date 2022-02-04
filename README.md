@@ -7,6 +7,4 @@
 
 
 MoonWalk is a programming language that compiles to C++. 
-You need g++ to compile MW.
-If you don't have g++ in your PATH, the program checks for g++.exe in C:/MinGW/bin.
-The provided source is compiled into out.exe.
+All you need to do to get going is download g++ if you haven't already.
