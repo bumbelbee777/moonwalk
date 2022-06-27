@@ -39,10 +39,6 @@ int main(int argc, char * argv[]) {
     else if(ArgExists(argv, argv+argc, "-h")){
       std::cout << "Moonwalk Compiler " << COMP_VER << "\nusage: mw path/to/file.mw\n";
       return 0;
-    } else {
-      std::cout << "No arguments specified";
-      return 0;
-    }
     string code = "";
     ifstream file;
     file.open(argv[1]);
