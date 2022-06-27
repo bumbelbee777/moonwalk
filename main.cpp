@@ -8,6 +8,7 @@ using namespace std;
 
 const std::string BuildDate = __DATE__;
 const std::string BuildTime = __TIME__;
+const std::string COMP_VER = 3;
 
 string replace(std::string subject, const std::string search,
                           const std::string replace) {
@@ -32,14 +33,14 @@ bool ArgExists(char** begin, char** end, const std::string & option) {
 }
 int main(int argc, char * argv[]) {
     if(ArgExists(argv, argv+argc, "-v")){
-      std::cout << "moonwalk release 3, compiled on " << BuildDate << ", " << BuildTime << "\n";
+      std::cout << "Moonwalk Compiler " << COMP_VER << ", compiled on " << BuildDate << ", " << BuildTime << "\n";
       return 0;
     }
     else if(ArgExists(argv, argv+argc, "-h")){
-      std::cout << "moonwalk release 3\nusage: mw path/to/file.mw\n";
+      std::cout << "Moonwalk Compiler " << COMP_VER << "\nusage: mw path/to/file.mw\n";
       return 0;
     } else {
-      std::cout << "no arguments specified";
+      std::cout << "No arguments specified";
       return 0;
     }
     string code = "";
