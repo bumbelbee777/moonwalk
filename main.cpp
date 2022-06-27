@@ -55,6 +55,15 @@ int main(int argc, char * argv[]) {
                     break;
                 }
             }
+            line = replace(line, "print", "printf");
+            line = replace(line, "input", "scanf");
+            line = replace(line, "exec", "system");
+            line = replace(line, "str", "string");
+            line = replace(line, ".c_string()", ".c_str()");
+            line = replace(line, "noret", "void");
+            line = replace(line, "yes", "true");
+            line = replace(line, "no", "false");
+            line = replace(line, "def", "#define");
             if(line == "imp win32") {
                 line = "#include <windows.h>";
             }
@@ -65,16 +74,6 @@ int main(int argc, char * argv[]) {
                 line = "#include <iostream>\n#include <cstdio>\n#include \"lib/sdouble.h\"\nusing namespace std;";
                 code += line + "\n";
             }
-            line = replace(line, "print", "printf");
-            line = replace(line, "input", "scanf");
-            line = replace(line, "exec", "system");
-            line = replace(line, "str", "string");
-            line = replace(line, ".c_string()", ".c_str()");
-            line = replace(line, "noret", "void");
-            line = replace(line, "yes", "true");
-            line = replace(line, "no", "false");
-            line = replace(line, "def", "#define");
-            
             if(s(line, "other")) {
                 line = replace(line, "other", "default");
             }
