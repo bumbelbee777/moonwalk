@@ -2,8 +2,13 @@
 #include <fstream>
 #include <string>
 #include <cstdio>
+#include <algorithm>
 
 using namespace std;
+
+const std::string BuildDate = __DATE__;
+const std::string BuildTime = __TIME__;
+
 string replace(std::string subject, const std::string search,
                           const std::string replace) {
     size_t pos = 0;
@@ -17,11 +22,26 @@ bool FileExists(string name) {
     ifstream f(name.c_str());
     return f.good();
 }
+
 bool s(string in, string ot) {
     string first = in.substr(0, ot.size());
     return first == ot;
 }
-int main(int argc, char const *argv[]) {
+bool ArgExists(char** begin, char** end, const std::string & option) {
+    return std::find(begin, end, option) != end;
+}
+int main(int argc, char * argv[]) {
+    if(ArgExists(argv, argv+argc, "-v")){
+      std::cout << "moonwalk release 3, compiled on " << BuildDate << ", " << BuildTime << "\n";
+      return 0;
+    }
+    else if(ArgExists(argv, argv+argc, "-h")){
+      std::cout << "moonwalk release 3\nusage: mw path/to/file.mw\n";
+      return 0;
+    } else {
+      std::cout << "no arguments specified";
+      return 0;
+    }
     string code = "";
     ifstream file;
     file.open(argv[1]);
@@ -37,10 +57,15 @@ int main(int argc, char const *argv[]) {
                     break;
                 }
             }
-            if(line == "imp os") {
+            if(line == "imp win32") {
+                line = "#include <windows.h>";
+            }
+            else if(line == "imp math") {
+                line="#include <cmath>";
+            }
+            else if(line == "imp os") {
                 line = "#include <iostream>\n#include <cstdio>\n#include \"lib/sdouble.h\"\nusing namespace std;";
                 code += line + "\n";
-                continue;
             }
             line = replace(line, "print", "printf");
             line = replace(line, "input", "scanf");
@@ -50,6 +75,7 @@ int main(int argc, char const *argv[]) {
             line = replace(line, "noret", "void");
             line = replace(line, "yes", "true");
             line = replace(line, "no", "false");
+            line = replace(line, "def", "#define");
             
             if(s(line, "other")) {
                 line = replace(line, "other", "default");
