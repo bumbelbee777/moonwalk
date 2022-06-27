@@ -8,7 +8,7 @@ using namespace std;
 
 const std::string BuildDate = __DATE__;
 const std::string BuildTime = __TIME__;
-const std::string COMP_VER = 3;
+const std::string COMP_VER = "3";
 
 string replace(std::string subject, const std::string search,
                           const std::string replace) {
